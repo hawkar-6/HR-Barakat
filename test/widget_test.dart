@@ -33,7 +33,7 @@ import 'package:flutter_test/flutter_test.dart';
 // لێرەدا دەبێت ناوی پڕۆژەکەت بنووسیت لە جیاتی 'your_project_name'
 // بۆ نموونە ئەگەر ناوی پڕۆژەکەت barakat بێت، دەبێت ئاوا بێت:
 // import 'package:barakat/screen/welcome-page.dart';
-import 'package:barakat/screen/welcome-page.dart';
+import 'package:barakat/screen/welcome_page.dart';
 
 void main() {
   testWidgets('Welcome page load test', (WidgetTester tester) async {
