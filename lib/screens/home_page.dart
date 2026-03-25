@@ -1,8 +1,36 @@
 import 'package:flutter/material.dart';
 import '../widgets/shop_card.dart';
+import 'profile_page.dart';
+import 'store_details.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // ئەم گۆڕاوە دیاری دەکات کام لاپەڕە نیشان بدەین
+  int _selectedIndex = 0;
+
+  // لیستی ئەو لاپەڕانەی کە لە شریتی خوارەوە هەن
+  final List<Widget> _pages = [
+    const HomeContent(), // ناوەڕۆکی لاپەڕەی سەرەکی
+    const Center(
+      child: Text("لاپەڕەی گەڕان", style: TextStyle(color: Colors.white)),
+    ), // کاتییە
+    const Center(
+      child: Text("لاپەڕەی کڕینەکان", style: TextStyle(color: Colors.white)),
+    ), // کاتییە
+    const ProfilePage(), // لاپەڕەی پڕۆفایل کە دروستمان کرد
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
