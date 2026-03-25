@@ -1,17 +1,8 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
+class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
-
-  @override
-  State<SignupPage> createState() => _SignupPageState();
-}
-
-class _SignupPageState extends State<SignupPage> {
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +12,11 @@ class _SignupPageState extends State<SignupPage> {
           Positioned.fill(
             child: Image.asset("assets/images/bg.jpg", fit: BoxFit.cover),
           ),
-          Positioned.fill(
-            child: Container(color: Colors.black.withOpacity(0.65)),
-          ),
           SafeArea(
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Column(
                   children: [
                     const SizedBox(height: 50),
@@ -36,59 +24,32 @@ class _SignupPageState extends State<SignupPage> {
                       "دروستکردنی ئەکاونت",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 28,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 40),
 
-                    _buildField(
-                      "ناوی تەواو",
-                      Icons.person_outline,
-                      _nameController,
-                    ),
-                    const SizedBox(height: 15),
-                    _buildField(
-                      "ئیمەیڵ",
-                      Icons.email_outlined,
-                      _emailController,
-                    ),
-                    const SizedBox(height: 15),
-                    _buildField(
-                      "ژمارەی مۆبایل",
-                      Icons.phone_android_outlined,
-                      _phoneController,
-                    ),
-                    const SizedBox(height: 15),
-                    _buildField(
+                    // دووبارە بەکارهێنانەوەی هەمان ستایل بۆ ڕێکپۆشی ئەپەکە
+                    _buildGlassInput("ناوی تەواو", Icons.person_outline),
+                    const SizedBox(height: 18),
+                    _buildGlassInput("ئیمەیڵ", Icons.email_outlined),
+                    const SizedBox(height: 18),
+                    _buildGlassInput("ژمارەی مۆبایل", Icons.phone_android),
+                    const SizedBox(height: 18),
+                    _buildGlassInput(
                       "وشەی تێپەڕ",
                       Icons.lock_outline,
-                      _passController,
                       isPass: true,
                     ),
 
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 45),
 
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context); // دەگەڕێتەوە بۆ لاپەڕەی لۆگین
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0D3D22),
-                        minimumSize: const Size(double.infinity, 60),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                      child: const Text(
-                        "تۆمارکردن",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    _buildSignupButton(
+                      "تۆمارکردن",
+                      () => Navigator.pop(context),
                     ),
+
                     const SizedBox(height: 20),
                     TextButton(
                       onPressed: () => Navigator.pop(context),
@@ -107,26 +68,62 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  Widget _buildField(
-    String hint,
-    IconData icon,
-    TextEditingController controller, {
-    bool isPass = false,
-  }) {
-    return TextField(
-      controller: controller,
-      obscureText: isPass,
-      textAlign: TextAlign.right,
-      style: const TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: const TextStyle(color: Colors.white54, fontSize: 14),
-        prefixIcon: Icon(icon, color: Colors.greenAccent),
-        filled: true,
-        fillColor: Colors.white.withOpacity(0.1),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
+  Widget _buildGlassInput(String hint, IconData icon, {bool isPass = false}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.12),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+          ),
+          child: TextField(
+            obscureText: isPass,
+            textAlign: TextAlign.right,
+            style: const TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 20,
+              ),
+              hintText: hint,
+              hintStyle: const TextStyle(color: Colors.white54),
+              prefixIcon: Icon(icon, color: Colors.greenAccent),
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSignupButton(String text, VoidCallback onPress) {
+    return Container(
+      width: double.infinity,
+      height: 65,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: const Color(0xFF0D3D22),
+        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
+      ),
+      child: ElevatedButton(
+        onPressed: onPress,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
