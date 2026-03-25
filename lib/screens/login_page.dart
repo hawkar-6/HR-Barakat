@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:barakat/nagor/constants.dart';
-import 'package:barakat/screens/signup_page.dart';
-import 'package:barakat/screens/home_page.dart';
+import 'signup_page.dart'; // دڵنیابە ئەم فایلەت دروست کردووە
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,46 +9,60 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  // کۆنتڕۆڵەرەکان بۆ وەرگرتنی نووسینەکان
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          // لێرەدا وێنە نوێیەکە وەک باکگراوند دادەنێین
-          image: DecorationImage(
-            image: AssetImage("assets/images/jpg(2).jpg"),
-            fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          // ١. وێنەی باکگراوند
+          Positioned.fill(
+            child: Image.asset(
+              "assets/images/bg.jpg",
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) =>
+                  Container(color: Colors.black), // ئەگەر وێنەکە نەبوو ڕەش بێت
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Directionality(
-            textDirection: TextDirection.rtl, // ڕاست بۆ چەپ
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              child: Center(
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: _formKey,
+          // ٢. ڕەنگی ڕەشی شەفاف بۆ سەر وێنەکە
+          Positioned.fill(
+            child: Container(color: Colors.black.withOpacity(0.55)),
+          ),
+          // ٣. ناوەڕۆکی لاپەڕەکە
+          SafeArea(
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Center(
+                  child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("چوونەژوورەوە", style: kTitleStyle),
+                        const Text(
+                          "بەرەکەت",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 38,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          "بەخێربێیتەوە بۆ ئەپەکەت",
+                          style: TextStyle(color: Colors.white70, fontSize: 16),
+                        ),
                         const SizedBox(height: 50),
 
-                        _buildInput(
+                        _buildTextField(
                           "ئیمەیڵ",
                           Icons.email_outlined,
                           _emailController,
                         ),
                         const SizedBox(height: 20),
-                        _buildInput(
+                        _buildTextField(
                           "وشەی تێپەڕ",
                           Icons.lock_outline,
                           _passController,
@@ -61,19 +73,10 @@ class _LoginPageState extends State<LoginPage> {
 
                         ElevatedButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomePage(),
-                                ),
-                              );
-                            }
+                            // لێرەدا کۆدی چوونەژوورەوە دادەنێیت
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(
-                              0xFF0D3D22,
-                            ), // ڕەنگی سەوزە تۆخەکە
+                            backgroundColor: const Color(0xFF0D3D22),
                             minimumSize: const Size(double.infinity, 60),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -122,33 +125,28 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
 
-  Widget _buildInput(
+  Widget _buildTextField(
     String hint,
     IconData icon,
     TextEditingController controller, {
     bool isPass = false,
   }) {
-    return TextFormField(
+    return TextField(
       controller: controller,
       obscureText: isPass,
       textAlign: TextAlign.right,
       style: const TextStyle(color: Colors.white),
-      validator: (value) => (value == null || value.isEmpty)
-          ? "تکایە ئەم خانەیە پڕ بکەرەوە"
-          : null,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.white54, fontSize: 14),
+        prefixIcon: Icon(icon, color: Colors.greenAccent),
         filled: true,
-        fillColor: Colors.black.withOpacity(
-          0.4,
-        ), // ڕەنگی ناو خانەکە تۆخ بێت بۆ ئەوەی دەقەکە دیار بێت
-        prefixIcon: Icon(icon, color: Colors.greenAccent, size: 22),
+        fillColor: Colors.white.withOpacity(0.1),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide.none,
