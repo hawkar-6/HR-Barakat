@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:barakat/screens/welcome_page.dart'; // هێنانەناوەی لاپەڕەی بەخێرهاتنی نوێ
-import 'package:barakat/nagor/constants.dart'; // فایلی نەگۆڕەکان لەناو فۆڵدەری nagor
+import 'screens/login_page.dart'; // دڵنیابە ئەم لایبەرەرییانەت هەیە
+import 'screens/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,20 +13,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       title: 'Barakat App',
+      
+      // ڕێکخستنی ڕەنگەکان بە یەکجار
       theme: ThemeData(
-        // لێرەدا دەتوانیت kPrimaryColor بەکاربهێنیت بۆ ئەوەی Theme ی ئەپەکەش سەوز بێت
+        brightness: Brightness.dark,
+        primarySwatch: Colors.green,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: kPrimaryColor,
+          seedColor: Colors.green,
           brightness: Brightness.dark,
         ),
         useMaterial3: true,
       ),
 
-      // لێرەدا WelcomeScreen وەک یەکەم لاپەڕە دادەنێین
-      // ئەگەر ویستت ڕاستەوخۆ بچێتە سەر لۆگین، بیگۆڕە بۆ LoginScreen()
-      home: const WelcomePage(),
+      // لێرە تەنها یەک دانە "home" دادەنێیت
+      // ئەگەر ویستت لاپەڕەی یەکەم بگۆڕیت، تەنها ناوەکەی ئێرە بگۆڕە
+      home: const WelcomePage(), 
     );
   }
 }
