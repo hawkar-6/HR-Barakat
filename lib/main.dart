@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:barakat/screens/welcome_page.dart';
+import 'package:barakat/nagor/constants.dart'; // ئەمە گرنگە بۆ ڕەنگەکان
 
 void main() {
   runApp(const MyApp());
@@ -14,27 +15,23 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Barakat App',
 
-      // بۆ ئەوەی هەموو ئەپەکە بە شێوەیەکی گشتی ئاراستەی ڕاست بۆ چەپی هەبێت (کوردی)
+      // ڕێکخستنی ئاراستەی نووسین بۆ کوردی (RTL)
       builder: (context, child) {
         return Directionality(textDirection: TextDirection.rtl, child: child!);
       },
 
-      // ڕێکخستنی ڕەنگەکان بە یەکجار
       theme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.dark,
-        primarySwatch: Colors.green,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+          // لێرەدا kPrimaryColor بەکاردێنین کە لە constants دامانناوە
+          seedColor: kPrimaryColor,
           brightness: Brightness.dark,
         ),
-        useMaterial3: true,
       ),
 
-      // لێرەدا WelcomePage وەک یەکەم لاپەڕە دادەنێین بۆ دەستپێک
+      // ئەپەکە بە لاپەڕەی بەخێرهاتن دەست پێ دەکات
       home: const WelcomePage(),
-
-      // لێرە تەنها یەک دانە "home" دادەنێیت
-      // ئەگەر ویستت لاپەڕەی یەکەم بگۆڕیت، تەنها ناوەکەی ئێرە بگۆڕە
     );
   }
 }
