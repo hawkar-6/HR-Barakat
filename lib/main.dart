@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:barakat/screen/login_page.dart';
+import 'package:barakat/screen/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Barakat App',
-      theme: ThemeData(useMaterial3: true),
-      home: const LoginPage(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.green,
+      ),
+      home: const HomePage(),
     );
   }
 }
