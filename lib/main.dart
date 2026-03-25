@@ -14,8 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Barakat App',
+
+      // بۆ ئەوەی هەموو ئەپەکە بە شێوەیەکی گشتی ئاراستەی ڕاست بۆ چەپی هەبێت (کوردی)
+      builder: (context, child) {
+        return Directionality(textDirection: TextDirection.rtl, child: child!);
+      },
+
       theme: ThemeData(
-        // لێرەدا دەتوانیت kPrimaryColor بەکاربهێنیت بۆ ئەوەی Theme ی ئەپەکەش سەوز بێت
         colorScheme: ColorScheme.fromSeed(
           seedColor: kPrimaryColor,
           brightness: Brightness.dark,
@@ -23,8 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      // لێرەدا WelcomeScreen وەک یەکەم لاپەڕە دادەنێین
-      // ئەگەر ویستت ڕاستەوخۆ بچێتە سەر لۆگین، بیگۆڕە بۆ LoginScreen()
+      // لێرەدا WelcomePage وەک یەکەم لاپەڕە دادەنێین بۆ دەستپێک
       home: const WelcomePage(),
     );
   }
