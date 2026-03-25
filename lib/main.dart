@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:barakat/screens/welcome_page.dart'; // هێنانەناوەی لاپەڕەی بەخێرهاتنی نوێ
 import 'package:barakat/nagor/constants.dart'; // فایلی نەگۆڕەکان لەناو فۆڵدەری nagor
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: 'Barakat App',
 
       // بۆ ئەوەی هەموو ئەپەکە بە شێوەیەکی گشتی ئاراستەی ڕاست بۆ چەپی هەبێت (کوردی)
