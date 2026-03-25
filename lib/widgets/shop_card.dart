@@ -2,54 +2,42 @@ import 'package:flutter/material.dart';
 
 class ShopCard extends StatelessWidget {
   final String title;
-  final String itemCount; // بۆ نموونە: ١٠ جۆر خواردن
-  final IconData logoIcon;
-  final VoidCallback onTap;
+  final String subtitle;
+  final String price;
+  final String oldPrice;
 
   const ShopCard({
     super.key,
     required this.title,
-    required this.itemCount,
-    required this.logoIcon,
-    required this.onTap,
+    required this.subtitle,
+    required this.price,
+    required this.oldPrice,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color(0xFF1E1E1E),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          children: [
-            // بەشی لۆگۆی دوکانەکە
-            Expanded(
-              flex: 3,
-              child: Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF2D2D2D),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                ),
-                child: Center(
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.greenAccent.withOpacity(0.1),
-                    child: Icon(logoIcon, size: 35, color: Colors.greenAccent),
-                  ),
-                ),
-              ),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E1E),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 120,
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
-            // زانیارییەکان
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            child: const Center(child: Icon(Icons.restaurant, size: 40)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       title,
@@ -81,10 +69,10 @@ class ShopCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
