@@ -39,8 +39,20 @@ class ShopCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                    Text(price, style: const TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold)),
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        color: Colors.greenAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 5),
@@ -48,7 +60,13 @@ class ShopCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(subtitle, style: const TextStyle(color: Colors.grey)),
-                    Text(oldPrice, style: const TextStyle(decoration: TextDecoration.lineThrough, color: Colors.red)),
+                    Text(
+                      oldPrice,
+                      style: const TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.red,
+                      ),
+                    ),
                   ],
                 ),
               ],

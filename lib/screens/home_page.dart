@@ -13,7 +13,10 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: const Text(
           "خواردنی پاشەکەوتکراو",
-          style: TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.greenAccent,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -24,10 +27,14 @@ class HomePage extends StatelessWidget {
           children: const [
             Text(
               "باشترین ئۆفەرەکان",
-              style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 20),
-            
+
             // لیستەکەت لێرەوە دەست پێ دەکات
             ShopCard(
               title: "چێشتخانەی کوردی",

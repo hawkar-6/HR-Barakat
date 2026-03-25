@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:barakat/screen/login_page.dart'; // هێنانەناوەی لاپەڕەی لۆگین
-import 'package:barakat/screen/home_page.dart';  // هێنانەناوەی لاپەڕەی سەرەکی
+import 'package:barakat/screens/login_page.dart'; // هێنانەناوەی لاپەڕەی لۆگین
+import 'package:barakat/screens/home_page.dart'; // هێنانەناوەی لاپەڕەی سەرەکی
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       // لێرەدا دیاری دەکەین کام لاپەڕە یەکەم جار بێتە پێش چاو
       // ئەگەر ویستت بچیتەوە سەر لاپەڕەکەی خۆت، تەنها بینووسە HomePage()
-      home: const LoginPage(), 
+      home: const LoginPage(),
     );
   }
 }
